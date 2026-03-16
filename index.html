@@ -1,15 +1,173 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mundo Pet</title>
 </head>
 
 <body>
+  <!-- Container principal da aplicação -->
+  <div id="app">
+    <!-- Cabeçalho principal -->
+    <header class="header">
+      <!-- Logo / identidade visual -->
+      <div class="brand">
+        <img src="./src/assets/icons/logo.svg" alt="Logo Mundo Pet" />
+      </div>
 
-  <h1>Agenda PetShop</h1>
+      <!-- Área de informações do topo -->
+      <div class="header-content">
+        <!-- Título e descrição da página -->
+        <div class="header-text">
+          <h1>Sua agenda</h1>
+          <p>Aqui você pode ver todos os clientes e serviços agendados para hoje.</p>
+        </div>
 
-  <script type="module" src="/main.js"></script>
+        <!-- Campo de seleção de data -->
+        <div class="header-actions">
+          <label for="selected-date" class="sr-only">Selecionar data</label>
+          <input type="date" id="selected-date" name="selected-date" />
+        </div>
+      </div>
+    </header>
 
+    <!-- Conteúdo principal -->
+    <main class="content">
+      <!-- Seção da agenda -->
+      <section class="schedule">
+        <!-- Período da manhã -->
+        <article class="schedule-period">
+          <header class="period-header">
+            <div class="period-title">
+              <img src="/src/assets/icons/Sun-Fog--Streamline-Solar.svg" alt="Ícone de manhã" />
+              <strong>Manhã</strong>
+            </div>
+
+            <span>09h-12h</span>
+          </header>
+
+          <!-- Lista de agendamentos da manhã -->
+          <ul id="period-morning" class="period-list"></ul>
+        </article>
+
+        <!-- Período da tarde -->
+        <article class="schedule-period">
+          <header class="period-header">
+            <div class="period-title">
+              <img src="/src/assets/icons/Cloud-Sun-4--Streamline-Solar.svg" alt="Ícone de tarde" />
+              <strong>Tarde</strong>
+            </div>
+
+            <span>13h-18h</span>
+          </header>
+
+          <!-- Lista de agendamentos da tarde -->
+          <ul id="period-afternoon" class="period-list"></ul>
+        </article>
+
+        <!-- Período da noite -->
+        <article class="schedule-period">
+          <header class="period-header">
+            <div class="period-title">
+              <img src="/src/assets/icons/Moon-Stars--Streamline-Solar.svg" alt="Ícone de noite" />
+              <strong>Noite</strong>
+            </div>
+
+            <span>19h-21h</span>
+          </header>
+
+          <!-- Lista de agendamentos da noite -->
+          <ul id="period-night" class="period-list"></ul>
+        </article>
+      </section>
+    </main>
+
+    <!-- Botão flutuante para abrir modal -->
+    <button id="new-schedule" class="button-new-schedule" type="button">
+      Novo agendamento
+    </button>
+
+    <!-- Modal de novo agendamento -->
+    <div id="schedule-modal" class="modal hidden">
+      <!-- Overlay do modal -->
+      <div class="modal-overlay"></div>
+
+      <!-- Conteúdo interno do modal -->
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <!-- Cabeçalho do modal -->
+        <header class="modal-header">
+          <div class="modal-header-text">
+            <h2 id="modal-title">Agende um atendimento</h2>
+            <p>Preencha os dados do cliente para realizar o agendamento:</p>
+          </div>
+
+          <!-- Botão de fechar modal -->
+          <button id="close-modal" class="modal-close" type="button" aria-label="Fechar modal">
+            ×
+          </button>
+        </header>
+
+        <!-- Formulário de agendamento -->
+        <form id="schedule-form" class="form">
+          <!-- Nome do tutor -->
+          <div class="input-wrapper">
+            <label for="tutor">Nome do tutor</label>
+            <input type="text" id="tutor" name="tutor" placeholder="Nome do tutor" />
+            <small class="error-message" id="tutor-error"></small>
+          </div>
+
+          <!-- Nome do pet -->
+          <div class="input-wrapper">
+            <label for="pet">Nome do pet</label>
+            <input type="text" id="pet" name="pet" placeholder="Nome do pet" />
+            <small class="error-message" id="pet-error"></small>
+          </div>
+
+          <!-- Telefone -->
+          <div class="input-wrapper">
+            <label for="phone">Telefone</label>
+            <input type="text" id="phone" name="phone" placeholder="(00) 00000-0000" />
+            <small class="error-message" id="phone-error"></small>
+          </div>
+
+          <!-- Descrição do serviço -->
+          <div class="input-wrapper">
+            <label for="service">Descrição do serviço</label>
+            <textarea id="service" name="service" placeholder="Descreva o serviço" rows="4"></textarea>
+            <small class="error-message" id="service-error"></small>
+          </div>
+
+          <!-- Data e hora -->
+          <div class="form-row">
+            <div class="input-wrapper">
+              <label for="appointment-date">Data</label>
+              <input type="date" id="appointment-date" name="appointment-date" />
+              <small class="error-message" id="date-error"></small>
+            </div>
+
+            <div class="input-wrapper">
+              <label for="appointment-hour">Hora</label>
+              <select id="appointment-hour" name="appointment-hour">
+                <option value="">Selecione</option>
+              </select>
+              <small class="error-message" id="hour-error"></small>
+            </div>
+          </div>
+
+          <!-- Botão de submit -->
+          <div class="form-actions">
+            <button type="submit" class="button-submit">
+              Agendar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
 </body>
+
 </html>
